@@ -91,7 +91,7 @@
 {
     if (_pinger) { // 真正停止
         if (_endBlock) {
-            _endBlock(_packetArr, _packetArr.count, _receiveNum, (float)_lossNum / (float)_packetArr.count);
+            _endBlock(_packetArr, _packetArr.count, _receiveNum, _packetArr.count == 0 ? 0 : (float)_lossNum / (float)_packetArr.count);
         }
     }
     
@@ -117,14 +117,10 @@
         }
         
         [self stop];
-        
         return;
     }
     
-    
-    if (_count > 0) {
-        _count -= 1;
-    }
+    if (_count > 0) _count -= 1;
     
     if (!_packetArr.lastObject.overUnixTime && !isFirst) { // 超时
         NetDrPingPacketData * packetData = _packetArr.lastObject;
@@ -141,6 +137,8 @@
 }
 
 // MARK: - SimplePing delegate callback
+
+// 开始Ping
 - (void)simplePing:(SimplePing *)pinger didStartWithAddress:(NSData *)address
 {
     _ip = [NetDrPing displayAddressForAddress: address];
@@ -156,13 +154,17 @@
     
 }
 
+// 由于发生错误结束Ping
 - (void)simplePing:(SimplePing *)pinger didFailWithError:(NSError *)error
 {
-    NSLog(@"failed: %@", [NetDrPing shortErrorFromError: error]);
+    if (_errorEndBlock) {
+        _errorEndBlock([NetDrPing shortErrorFromError: error]);
+    }
     
     [self stop];
 }
 
+// 发送Ping包
 - (void)simplePing:(SimplePing *)pinger didSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber
 {
     NetDrPingPacketData * packetData = [NetDrPingPacketData new];
@@ -173,6 +175,7 @@
     [_packetArr addObject: packetData];
 }
 
+// 收到错误Ping包
 - (void)simplePing:(SimplePing *)pinger didFailToSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber error:(NSError *)error
 {
     NSInteger packetArrNum = _packetArr.count;
@@ -193,6 +196,7 @@
     if (_singlePacketBlock) _singlePacketBlock(packetData);
 }
 
+// 收到成功Ping包
 - (void)simplePing:(SimplePing *)pinger didReceivePingResponsePacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber timeToLive:(NSInteger)timeToLive
 {
     NSInteger packetArrNum = _packetArr.count;
@@ -214,10 +218,10 @@
     if (_singlePacketBlock) _singlePacketBlock(packetData);
 }
 
-// 不认识的包
+// 接收到不匹配的ICMP消息
 - (void)simplePing:(SimplePing *)pinger didReceiveUnexpectedPacket:(NSData *)packet
 {
-//    NSLog(@"unexpected packet, size=%zu", packet.length);
+    if (_singleUnexpectedPacketBlock) _singleUnexpectedPacketBlock(packet.length);
 }
 
 // MARK: - utilities

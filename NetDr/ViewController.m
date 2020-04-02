@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "NetDr.h"
 
-@interface ViewController ()
+@interface ViewController () <NetDrDelegate>
 
 @property (nonatomic, strong) UITextView * textView;
 
@@ -36,11 +36,42 @@
     
 }
 
-
 - (void)ping
 {
     _netDr = [NetDr new];
-    [_netDr netDrPing_startWithHostName: @"v2ex.com" count: 10];
+    _netDr.delegate = self;
+    [_netDr netDrPing_startWithHostName: @"baidu.com" count:3 addressStyle: PingAddressStyleAny];
+}
+
+// MARK: - NetDr Delegate
+
+- (void)netDrPing_didStartWithHostName:(NSString *)hostName ip:(NSString *)ip
+{
+    NSLog(@"PING %@ (%@):", hostName, ip);
+}
+
+- (void)netDrPing_singlePacketWithStatus:(BOOL)status size:(NSString *)size ip:(NSString *)ip icmpSeq:(long long)icmpSeq time:(NSInteger)time
+{
+    if (status) {
+        NSLog(@"%@ bytes from %@: icmp_seq=%lld ttl=52 time=%zd ms", size, ip, icmpSeq, time);
+    } else {
+        NSLog(@"Request timeout for icmp_seq %lld", icmpSeq);
+    }
+}
+
+- (void)netDrPing_singleUnexpectedPacketWithSize:(NSUInteger)size
+{
+    NSLog(@"unexpected packet, size=%zu", size);
+}
+
+- (void)netDrPing_didEndWithError:(NSString *)errorDescription
+{
+    NSLog(@"failed: %@", errorDescription);
+}
+
+- (void)netDrPing_didEndWithPacketNum:(NSInteger)packetNum packetReceivedNum:(NSInteger)packetReceivedNum packetLossPercentage:(float)packetLossPercentage
+{
+    NSLog(@"%zd packets transmitted, %zd packets received, %.2f%% packet loss", packetNum, packetReceivedNum, packetLossPercentage * 100);
 }
 
 
