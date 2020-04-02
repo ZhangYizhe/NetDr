@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) UITextView * textView;
+
 @property (nonatomic, strong) NetDr * netDr;
 
 @end
@@ -19,9 +21,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _netDr = [NetDr new];
+    [self initView];
     
-    [_netDr netDrPing_startWithHostName: @"baidu.com"];
+    [self ping];
+    
+}
+
+- (void)initView
+{
+    _textView = [UITextView new];
+    _textView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview: _textView];
+    
+    
+}
+
+
+- (void)ping
+{
+    _netDr = [NetDr new];
+    [_netDr netDrPing_startWithHostName: @"v2ex.com" count: 10];
 }
 
 

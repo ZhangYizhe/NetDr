@@ -13,8 +13,17 @@
 
 @interface NetDrPing () <SimplePingDelegate>
 
+// ping 次数
+@property (nonatomic, assign) NSInteger count;
+
 // ping实例
 @property (nonatomic, strong) SimplePing * pinger;
+
+// ping时间控制器实例
+@property (nonatomic, strong) NSTimer * timer;
+
+// 域名
+@property (nonatomic, copy) NSString * hostName;
 
 // 域名ip地址
 @property (nonatomic, copy) NSString * ip;
@@ -22,32 +31,51 @@
 // 包数组
 @property (nonatomic, strong) NSMutableArray <NetDrPingPacketData *> * packetArr;
 
+// 接收到的包数量
+@property (nonatomic, assign) long long receiveNum;
+
+// 丢失的包数量
+@property (nonatomic, assign) long long lossNum;
+
 @end
 
 @implementation NetDrPing
 
-- (void)startWithHostName: (NSString *) hostName
+/// 使用IPv4/IPv6来请求
+/// @param hostName 域名
+/// @param count 请求次数  -1 -> 不限次数
+- (void)startWithHostName: (NSString *) hostName count: (NSInteger) count
 {
-    [self startWithHostName:hostName forceIPv4: NO forceIPv6: NO];
+    [self startWithHostName:hostName forceIPv4: NO forceIPv6: NO count: count];
 }
 
-- (void)startWithHostName: (NSString *) hostName forceIPv6: (BOOL) forceIPv6
+/// 使用IPv6来请求
+/// @param hostName 域名
+/// @param count 请求次数  -1 -> 不限次数
+- (void)startForceIPv6WithHostName: (NSString *) hostName count: (NSInteger) count
 {
-    [self startWithHostName:hostName forceIPv4: NO forceIPv6: forceIPv6];
+    [self startWithHostName:hostName forceIPv4: NO forceIPv6: YES count: count];
 }
 
-- (void)startWithHostName: (NSString *) hostName forceIPv4: (BOOL) forceIPv4
+/// 使用IPv4来请求
+/// @param hostName 域名
+/// @param count 请求次数  -1 -> 不限次数
+- (void)startForceIPv4WithHostName: (NSString *) hostName count: (NSInteger) count
 {
-    [self startWithHostName:hostName forceIPv4: forceIPv4 forceIPv6: NO];
+    [self startWithHostName:hostName forceIPv4: YES forceIPv6: NO count: count];
 }
 
-- (void)startWithHostName: (NSString *) hostName forceIPv4: (BOOL) forceIPv4 forceIPv6: (BOOL) forceIPv6
+- (void)startWithHostName: (NSString *) hostName forceIPv4: (BOOL) forceIPv4 forceIPv6: (BOOL) forceIPv6 count: (NSInteger) count
 {
     [self stop];
     
+    _count = count;
+    _hostName = hostName;
     _ip = @"";
     _packetArr = [NSMutableArray new];
     _pinger = [[SimplePing alloc] initWithHostName: hostName];
+    _receiveNum = 0;
+    _lossNum = 0;
     
     if (forceIPv4 && !forceIPv6) {
         _pinger.addressStyle = SimplePingAddressStyleICMPv4;
@@ -61,12 +89,54 @@
 
 - (void)stop
 {
+    if (_pinger) { // 真正停止
+        if (_endBlock) {
+            _endBlock(_packetArr, _packetArr.count, _receiveNum, (float)_lossNum / (float)_packetArr.count);
+        }
+    }
+    
     [_pinger stop];
     _pinger = nil;
+    
+    [_timer invalidate];
+    _timer = nil;
 }
 
-- (void)sendPing
+- (void)sendPingisFirst: (BOOL) isFirst
 {
+    if (_count == 0) {
+        if (!_packetArr.lastObject.overUnixTime && !isFirst) { // 超时
+            NetDrPingPacketData * packetData = _packetArr.lastObject;
+            packetData.overUnixTime = [NetDrPing currentUnixTimeStr];
+            packetData.status = NO;
+            packetData.errorDescription = @"Request timeout";
+            _lossNum += 1;
+            
+            // 单个包结果返回
+            if (_singlePacketBlock) _singlePacketBlock(packetData);
+        }
+        
+        [self stop];
+        
+        return;
+    }
+    
+    
+    if (_count > 0) {
+        _count -= 1;
+    }
+    
+    if (!_packetArr.lastObject.overUnixTime && !isFirst) { // 超时
+        NetDrPingPacketData * packetData = _packetArr.lastObject;
+        packetData.overUnixTime = [NetDrPing currentUnixTimeStr];
+        packetData.status = NO;
+        packetData.errorDescription = @"Request timeout";
+        _lossNum += 1;
+        
+        // 单个包结果返回
+        if (_singlePacketBlock) _singlePacketBlock(packetData);
+    }
+    
     [_pinger sendPingWithData: nil];
 }
 
@@ -74,7 +144,16 @@
 - (void)simplePing:(SimplePing *)pinger didStartWithAddress:(NSData *)address
 {
     _ip = [NetDrPing displayAddressForAddress: address];
-    [self sendPing];
+    
+    if (_startBlock) _startBlock(_hostName, _ip);
+    
+    // 第一次ping操作
+    [self sendPingisFirst: YES];
+    
+    // 开始定时器操作
+    if (_timer) return;
+    _timer = [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self selector:@selector(sendPingisFirst:) userInfo:nil repeats: YES];
+    
 }
 
 - (void)simplePing:(SimplePing *)pinger didFailWithError:(NSError *)error
@@ -108,6 +187,8 @@
     packetData.status = NO;
     packetData.errorDescription = [NetDrPing shortErrorFromError: error];
     
+    _lossNum += 1;
+    
     // 单个包结果返回
     if (_singlePacketBlock) _singlePacketBlock(packetData);
 }
@@ -126,6 +207,9 @@
     packetData.ttl = timeToLive;
     packetData.overUnixTime = [NetDrPing currentUnixTimeStr];
     packetData.status = YES;
+    
+    _receiveNum += 1;
+    
     // 单个包结果返回
     if (_singlePacketBlock) _singlePacketBlock(packetData);
 }

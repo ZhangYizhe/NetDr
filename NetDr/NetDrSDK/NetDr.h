@@ -12,7 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NetDr : NSObject
 
-- (void)netDrPing_startWithHostName: (NSString *) hostName;
+- (void)netDrPing_startWithHostName: (NSString *) hostName count: (NSInteger) count;
+
+@end
+
+@protocol NetDrDelegate <NSObject>
+
+@optional
+- (void)
+
 
 @end
 
