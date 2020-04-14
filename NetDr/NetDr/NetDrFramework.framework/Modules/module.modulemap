@@ -1,0 +1,6 @@
+framework module NetDrFramework {
+  umbrella header "NetDrFramework.h"
+
+  export *
+  module * { export * }
+}
