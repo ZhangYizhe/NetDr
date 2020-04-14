@@ -35,6 +35,24 @@ typedef NS_ENUM(NSInteger, PingAddressStyle) {
 // MARK: - 基础信息
 - (NSDictionary *)netDrBasic_infoDict;
 
+// 获取设备类型
++ (NSString *)netDrBasic_getDeviceType;
+
+// 获取系统版本
++ (NSString *)netDrBasic_getSystemVersion;
+
+// 获取运营商名称
++ (NSArray *)netDrBasic_getCarrierName;
+
+// 获取当前网络类型
++ (NSArray *)netDrBasic_getCurrentNetworkType;
+
+// 获取当前IP地址
++ (NSString *)netDrBasic_getPublicIPAddress;
+
+// 获取本地DNS地址
++ (NSString *)netDrBasic_getLocalDNSAddress;
+
 // MARK: - Ping
 /// 开始Ping
 /// @param hostName 域名

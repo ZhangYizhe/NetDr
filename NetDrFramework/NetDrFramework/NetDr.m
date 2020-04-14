@@ -33,6 +33,42 @@
     return [NetDrBasic getAllInfoDict];
 }
 
+// 获取设备类型
++ (NSString *)netDrBasic_getDeviceType
+{
+    return [NetDrBasic getDeviceType];
+}
+
+// 获取系统版本
++ (NSString *)netDrBasic_getSystemVersion
+{
+    return [NetDrBasic getSystemVersion];
+}
+
+// 获取运营商名称
++ (NSArray *)netDrBasic_getCarrierName
+{
+    return [NetDrBasic getCarrierName];
+}
+
+// 获取当前网络类型
++ (NSArray *)netDrBasic_getCurrentNetworkType
+{
+    return [NetDrBasic getCurrentNetworkType];
+}
+
+// 获取当前IP地址
++ (NSString *)netDrBasic_getPublicIPAddress
+{
+    return [NetDrBasic getPublicIPAddress];
+}
+
+// 获取本地DNS地址
++ (NSString *)netDrBasic_getLocalDNSAddress
+{
+    return [NetDrBasic getLocalDNSAddress];
+}
+
 // MARK: - Ping
 /// 开始Ping
 /// @param hostName 域名
