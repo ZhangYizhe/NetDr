@@ -159,7 +159,7 @@
 + (NSString *)getPublicIPAddress
 {
     NSError *error;
-    NSURL *ipURL = [NSURL URLWithString:@"http://ipof.in/txt"];
+    NSURL *ipURL = [NSURL URLWithString:@"http://api.ipify.org"];
     NSString *ip = [NSString stringWithContentsOfURL:ipURL encoding:NSUTF8StringEncoding error:&error];
     if (error) {
         return @"None";

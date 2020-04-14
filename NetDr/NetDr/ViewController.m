@@ -27,7 +27,7 @@
     _netDr = [NetDr new];
     _netDr.delegate = self;
     
-    [self ping];
+    [self basicInfo];
     
 }
 
@@ -89,7 +89,6 @@
 {
     NSLog(@"%zd packets transmitted, %zd packets received, %.2f%% packet loss", packetNum, packetReceivedNum, packetLossPercentage * 100);
     
-    [_netDr netDrPing_startWithHostName: @"baidu.com" count:3 addressStyle: PingAddressStyleAny];
 }
 
 
