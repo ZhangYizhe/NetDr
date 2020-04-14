@@ -90,13 +90,14 @@
 - (void)stop
 {
     if (_pinger) { // 真正停止
+        
+        [_pinger stop];
+        _pinger = nil;
+        
         if (_endBlock) {
             _endBlock(_packetArr, _packetArr.count, _receiveNum, _packetArr.count == 0 ? 0 : (float)_lossNum / (float)_packetArr.count);
         }
     }
-    
-    [_pinger stop];
-    _pinger = nil;
     
     [_timer invalidate];
     _timer = nil;
