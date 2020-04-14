@@ -15,7 +15,16 @@
 		6236E53D243446AC001814EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6236E53B243446AC001814EB /* LaunchScreen.storyboard */; };
 		6236E540243446AC001814EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236E53F243446AC001814EB /* main.m */; };
 		6273781D2445B0FC00F2D31B /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F541202445A94D0080A864 /* libresolv.tbd */; };
-		62B0E8C32445B3B000B12088 /* NetDrFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B0E8C22445B3B000B12088 /* NetDrFramework.framework */; };
+		62B0E9312445C0AD00B12088 /* NetDrPingPacketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E9182445C0AD00B12088 /* NetDrPingPacketData.m */; };
+		62B0E9322445C0AD00B12088 /* NetDrPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E91A2445C0AD00B12088 /* NetDrPing.m */; };
+		62B0E9332445C0AD00B12088 /* NetDrPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E91C2445C0AD00B12088 /* NetDrPing.m */; };
+		62B0E9342445C0AD00B12088 /* NetDrPingPacketData.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E91F2445C0AD00B12088 /* NetDrPingPacketData.m */; };
+		62B0E9352445C0AD00B12088 /* NetDrBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E9202445C0AD00B12088 /* NetDrBasic.m */; };
+		62B0E9362445C0AD00B12088 /* NetDrBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E9232445C0AD00B12088 /* NetDrBasic.m */; };
+		62B0E9372445C0AD00B12088 /* NetDr.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E9252445C0AD00B12088 /* NetDr.m */; };
+		62B0E9382445C0AD00B12088 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E9292445C0AD00B12088 /* Reachability.m */; };
+		62B0E9392445C0AD00B12088 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E92D2445C0AD00B12088 /* SimplePing.m */; };
+		62B0E93A2445C0AD00B12088 /* DNSResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0E9302445C0AD00B12088 /* DNSResolver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +40,26 @@
 		6236E53C243446AC001814EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6236E53E243446AC001814EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6236E53F243446AC001814EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		62B0E8C22445B3B000B12088 /* NetDrFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NetDrFramework.framework; sourceTree = "<group>"; };
+		62B0E9172445C0AD00B12088 /* NetDrPingPacketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetDrPingPacketData.h; sourceTree = "<group>"; };
+		62B0E9182445C0AD00B12088 /* NetDrPingPacketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetDrPingPacketData.m; sourceTree = "<group>"; };
+		62B0E9192445C0AD00B12088 /* NetDrPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetDrPing.h; sourceTree = "<group>"; };
+		62B0E91A2445C0AD00B12088 /* NetDrPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetDrPing.m; sourceTree = "<group>"; };
+		62B0E91B2445C0AD00B12088 /* NetDrPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetDrPing.h; path = ../../NetDrFramework/NetDrFramework/NetDrPing/NetDrPing.h; sourceTree = "<group>"; };
+		62B0E91C2445C0AD00B12088 /* NetDrPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetDrPing.m; path = ../../NetDrFramework/NetDrFramework/NetDrPing/NetDrPing.m; sourceTree = "<group>"; };
+		62B0E91E2445C0AD00B12088 /* NetDrPingPacketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetDrPingPacketData.h; sourceTree = "<group>"; };
+		62B0E91F2445C0AD00B12088 /* NetDrPingPacketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetDrPingPacketData.m; sourceTree = "<group>"; };
+		62B0E9202445C0AD00B12088 /* NetDrBasic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetDrBasic.m; path = ../../NetDrFramework/NetDrFramework/NetDrBasic/NetDrBasic.m; sourceTree = "<group>"; };
+		62B0E9222445C0AD00B12088 /* NetDrBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetDrBasic.h; sourceTree = "<group>"; };
+		62B0E9232445C0AD00B12088 /* NetDrBasic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetDrBasic.m; sourceTree = "<group>"; };
+		62B0E9242445C0AD00B12088 /* NetDr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetDr.h; path = ../../NetDrFramework/NetDrFramework/NetDr.h; sourceTree = "<group>"; };
+		62B0E9252445C0AD00B12088 /* NetDr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetDr.m; path = ../../NetDrFramework/NetDrFramework/NetDr.m; sourceTree = "<group>"; };
+		62B0E9262445C0AD00B12088 /* NetDrBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetDrBasic.h; path = ../../NetDrFramework/NetDrFramework/NetDrBasic/NetDrBasic.h; sourceTree = "<group>"; };
+		62B0E9292445C0AD00B12088 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		62B0E92A2445C0AD00B12088 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		62B0E92C2445C0AD00B12088 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		62B0E92D2445C0AD00B12088 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		62B0E92F2445C0AD00B12088 /* DNSResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNSResolver.h; sourceTree = "<group>"; };
+		62B0E9302445C0AD00B12088 /* DNSResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNSResolver.m; sourceTree = "<group>"; };
 		62F541202445A94D0080A864 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -41,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6273781D2445B0FC00F2D31B /* libresolv.tbd in Frameworks */,
-				62B0E8C32445B3B000B12088 /* NetDrFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,9 +106,96 @@
 				6236E53B243446AC001814EB /* LaunchScreen.storyboard */,
 				6236E53E243446AC001814EB /* Info.plist */,
 				6236E53F243446AC001814EB /* main.m */,
-				62B0E8C22445B3B000B12088 /* NetDrFramework.framework */,
+				62B0E9242445C0AD00B12088 /* NetDr.h */,
+				62B0E9252445C0AD00B12088 /* NetDr.m */,
+				62B0E9212445C0AD00B12088 /* NetDrBasic */,
+				62B0E9262445C0AD00B12088 /* NetDrBasic.h */,
+				62B0E9202445C0AD00B12088 /* NetDrBasic.m */,
+				62B0E9152445C0AD00B12088 /* NetDrPing */,
+				62B0E91B2445C0AD00B12088 /* NetDrPing.h */,
+				62B0E91C2445C0AD00B12088 /* NetDrPing.m */,
+				62B0E91D2445C0AD00B12088 /* NetDrPingData */,
+				62B0E9272445C0AD00B12088 /* ThirdCommon */,
 			);
 			path = NetDr;
+			sourceTree = "<group>";
+		};
+		62B0E9152445C0AD00B12088 /* NetDrPing */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E9162445C0AD00B12088 /* NetDrPingData */,
+				62B0E9192445C0AD00B12088 /* NetDrPing.h */,
+				62B0E91A2445C0AD00B12088 /* NetDrPing.m */,
+			);
+			name = NetDrPing;
+			path = ../../NetDrFramework/NetDrFramework/NetDrPing;
+			sourceTree = "<group>";
+		};
+		62B0E9162445C0AD00B12088 /* NetDrPingData */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E9172445C0AD00B12088 /* NetDrPingPacketData.h */,
+				62B0E9182445C0AD00B12088 /* NetDrPingPacketData.m */,
+			);
+			path = NetDrPingData;
+			sourceTree = "<group>";
+		};
+		62B0E91D2445C0AD00B12088 /* NetDrPingData */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E91E2445C0AD00B12088 /* NetDrPingPacketData.h */,
+				62B0E91F2445C0AD00B12088 /* NetDrPingPacketData.m */,
+			);
+			name = NetDrPingData;
+			path = ../../NetDrFramework/NetDrFramework/NetDrPing/NetDrPingData;
+			sourceTree = "<group>";
+		};
+		62B0E9212445C0AD00B12088 /* NetDrBasic */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E9222445C0AD00B12088 /* NetDrBasic.h */,
+				62B0E9232445C0AD00B12088 /* NetDrBasic.m */,
+			);
+			name = NetDrBasic;
+			path = ../../NetDrFramework/NetDrFramework/NetDrBasic;
+			sourceTree = "<group>";
+		};
+		62B0E9272445C0AD00B12088 /* ThirdCommon */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E9282445C0AD00B12088 /* Reachability */,
+				62B0E92B2445C0AD00B12088 /* SimplePing */,
+				62B0E92E2445C0AD00B12088 /* DNSResolver */,
+			);
+			name = ThirdCommon;
+			path = ../../NetDrFramework/NetDrFramework/ThirdCommon;
+			sourceTree = "<group>";
+		};
+		62B0E9282445C0AD00B12088 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E9292445C0AD00B12088 /* Reachability.m */,
+				62B0E92A2445C0AD00B12088 /* Reachability.h */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		62B0E92B2445C0AD00B12088 /* SimplePing */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E92C2445C0AD00B12088 /* SimplePing.h */,
+				62B0E92D2445C0AD00B12088 /* SimplePing.m */,
+			);
+			path = SimplePing;
+			sourceTree = "<group>";
+		};
+		62B0E92E2445C0AD00B12088 /* DNSResolver */ = {
+			isa = PBXGroup;
+			children = (
+				62B0E92F2445C0AD00B12088 /* DNSResolver.h */,
+				62B0E9302445C0AD00B12088 /* DNSResolver.m */,
+			);
+			path = DNSResolver;
 			sourceTree = "<group>";
 		};
 		62F5411F2445A94D0080A864 /* Frameworks */ = {
@@ -163,9 +277,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				6236E535243446AB001814EB /* ViewController.m in Sources */,
+				62B0E9332445C0AD00B12088 /* NetDrPing.m in Sources */,
+				62B0E9312445C0AD00B12088 /* NetDrPingPacketData.m in Sources */,
+				62B0E93A2445C0AD00B12088 /* DNSResolver.m in Sources */,
 				6236E52F243446AB001814EB /* AppDelegate.m in Sources */,
+				62B0E9372445C0AD00B12088 /* NetDr.m in Sources */,
+				62B0E9362445C0AD00B12088 /* NetDrBasic.m in Sources */,
 				6236E540243446AC001814EB /* main.m in Sources */,
+				62B0E9342445C0AD00B12088 /* NetDrPingPacketData.m in Sources */,
+				62B0E9352445C0AD00B12088 /* NetDrBasic.m in Sources */,
 				6236E532243446AB001814EB /* SceneDelegate.m in Sources */,
+				62B0E9392445C0AD00B12088 /* SimplePing.m in Sources */,
+				62B0E9382445C0AD00B12088 /* Reachability.m in Sources */,
+				62B0E9322445C0AD00B12088 /* NetDrPing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

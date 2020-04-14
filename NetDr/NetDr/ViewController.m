@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NetDrFramework.framework/NetDrFramework.h"
+#import "NetDr.h"
 
 @interface ViewController () <NetDrDelegate>
 
@@ -27,7 +27,7 @@
     _netDr = [NetDr new];
     _netDr.delegate = self;
     
-    [self basicInfo];
+    [self ping];
     
 }
 
@@ -88,6 +88,8 @@
 - (void)netDrPing_didEndWithPacketNum:(NSInteger)packetNum packetReceivedNum:(NSInteger)packetReceivedNum packetLossPercentage:(float)packetLossPercentage
 {
     NSLog(@"%zd packets transmitted, %zd packets received, %.2f%% packet loss", packetNum, packetReceivedNum, packetLossPercentage * 100);
+    
+    [_netDr netDrPing_startWithHostName: @"baidu.com" count:3 addressStyle: PingAddressStyleAny];
 }
 
 
