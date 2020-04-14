@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NetDrFramework.framework/Headers/NetDrFramework.h"
+#import "NetDrFramework.framework/NetDrFramework.h"
 
 @interface ViewController () <NetDrDelegate>
 
