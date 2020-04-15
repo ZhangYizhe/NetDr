@@ -1,7 +1,5 @@
 # NetDr
 
----
-
 NetDr is a network check tool for iOS / MacOS / TV OS. You can integration this tool on your project very easy. 
 
 ### What function does it have?
@@ -28,6 +26,6 @@ When you did run this command, you will get a framework file under the "Products
 
 In the end you only need to move the "NetDrFramework.framework" folder in the "./Products/Debug-iphoneos/" path to to your project.
 
-2) Use the Compiled Framework.
+2）Use the Compiled Framework.
 
 When you download and open the repository, you will see the "NetDrFramework.framework" on root directory.
